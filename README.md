@@ -1,87 +1,134 @@
-hello
-orlando
-200ok
-// Updated by Jenkins on Fri Jul 25 13:44:09 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:07:38 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:12:52 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:14:06 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:15:35 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:15:39 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:17:17 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:17:28 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:19:00 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:21:28 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:24:58 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:28:50 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:36:24 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:39:12 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:42:21 UTC 2025
-// Updated by Jenkins on Fri Jul 25 14:47:22 UTC 2025
-pipeline will get triggered
-this is another commit I am doing for automatic deployment
+pipeline {
+    agent any
 
-one more
-// Updated by Jenkins on Fri Jul 25 16:20:58 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:21:13 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:21:23 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:21:33 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:21:43 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:21:53 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:22:03 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:22:13 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:22:23 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:22:33 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:22:43 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:22:53 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:23:03 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:23:13 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:23:23 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:23:33 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:23:43 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:23:53 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:24:03 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:24:13 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:24:23 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:24:33 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:24:43 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:24:53 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:25:03 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:25:13 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:25:23 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:25:33 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:25:43 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:25:53 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:26:03 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:26:13 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:26:23 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:26:33 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:26:43 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:26:53 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:27:03 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:27:13 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:27:23 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:27:33 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:27:43 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:27:53 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:28:03 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:28:13 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:28:23 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:28:33 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:28:43 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:28:53 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:29:03 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:29:13 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:29:23 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:29:33 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:29:43 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:29:53 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:30:03 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:30:13 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:30:23 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:30:33 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:30:43 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:30:53 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:31:03 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:31:13 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:31:23 UTC 2025
-// Updated by Jenkins on Fri Jul 25 16:31:33 UTC 2025
+    environment {
+        GIT_REPO = 'https://github.com/umesh-0518/agriza.git'
+        GIT_BRANCH = 'Development'  
+        GIT_CREDENTIALS = 'github-access'
+    }
+
+    stages {
+        stage('Pull Code') {
+            steps {
+                git branch: "${GIT_BRANCH}", credentialsId: "${GIT_CREDENTIALS}", url: "${GIT_REPO}"
+            }
+        }
+
+        stage('Make Change') {
+            steps {
+                sh 'echo "// Updated by Jenkins on $(date)" >> README.md'
+            }
+        }
+
+        stage('Push Code') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: "${GIT_CREDENTIALS}", usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    sh """
+                        git config user.name "umesh-0518"
+                        git config user.email "uraghuwanshi25@gmail.com"
+                        git add README.md
+                        git commit -m "Auto update from Jenkins" || echo "No changes to commit"
+                        git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/umesh-0518/agriza.git
+                        git push origin ${GIT_BRANCH}
+                    """
+                }
+            }
+        }
+
+        stage('Deploy to Development Server') {
+            steps {
+                sshagent(['ec2-user']) {
+                    sh '''
+                       ssh -o StrictHostKeyChecking=no ec2-user@54.169.151.86 '
+                       cd /home/ec2-user/frontend/backend &&
+                       git pull origin Development &&
+                       npm install --legacy-peer-deps &&
+                       pm2 describe app || pm2 start app.js --name app &&
+                       pm2 restart app
+                        '
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Code pushed and deployed successfully!"
+        }
+        failure {
+            echo "❌ Build failed. Please check logs."
+        }
+    }
+}
+
+## To set up and configure an automated CI/CD pipeline for two GitHub repositories (frontend and backend) based on a Git branching strategy. The pipeline should automatically deploy code to:
+
+Development Environment when pushed to the Development branch
+
+Testing Environment when pushed to the Testing branch
+
+✅ What Has Been Implemented
+1. Jenkins Setup
+Installed and configured Jenkins on an EC2 Amazon Linux instance.
+
+Installed required plugins: Git, SSH Agent, NodeJS, and Pipeline.
+
+2. GitHub Webhook Integration
+Created webhook in GitHub to trigger Jenkins job on push events to the Development branch.
+
+Webhook URL: http://<jenkins-public-ip>:8080/github-webhook/
+
+3. Jenkins Pipeline (frontend-dev)
+Created a scripted pipeline with the following stages:
+
+Pull Code from the Development branch
+
+Make Change (append a timestamp comment)
+
+Push Code back to GitHub
+
+Deploy to EC2 via SSH:
+
+Pull latest code
+
+Run npm install
+
+Start/restart app using pm2
+
+4. SSH Deployment to EC2
+Configured SSH access using Jenkins credentials (SSH key).
+
+Deployment path: /home/ec2-user/frontend/backend/
+
+App starts via PM2 (index.js or your main app file).
+
+🧪 How to Test
+Make a change and push to Development branch:
+
+bash
+Copy
+Edit
+git checkout Development
+git add .
+git commit -m "Test commit"
+git push origin Development
+Jenkins will automatically:
+
+Pull latest code
+
+Deploy to EC2
+
+Restart app with pm2
+
+Visit the public EC2 IP or domain to verify deployment.
+
+⚠ Notes
+Ensure port 3000 (or your app port) is open in EC2 Security Groups.
+
+npm install may give warnings for Node versions; tested on Node 18.x.
+
+pm2 is used for zero-downtime restarts.
+
+📂 Future Improvements
+Integrate testing and code quality us
