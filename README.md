@@ -43,9 +43,8 @@ pipeline {
                        cd /home/ec2-user/frontend/backend &&
                        git pull origin Testing &&
                        npm install --legacy-peer-deps &&
-                       pm2 describe app || pm2 start app.js --name app &&
-                       pm2 restart app
-                        '
+                       pm2 describe app || pm2 start app.js --name app &&  ##[Dev & Test on different servers	pm2 start app.js --name app]
+                                                                              [Dev & Test on same server	pm2 start app.js --name dev-app/test-app]
                     '''
                 }
             }
