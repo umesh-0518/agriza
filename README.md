@@ -123,12 +123,4 @@ Restart app with pm2
 
 Visit the public EC2 IP or domain to verify deployment.
 
-⚠ Notes
-Ensure port 3000 (or your app port) is open in EC2 Security Groups.
 
-npm install may give warnings for Node versions; tested on Node 18.x.
-
-pm2 is used for zero-downtime restarts.
-
-📂 Future Improvements
-Integrate testing and code quality us
